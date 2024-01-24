@@ -70,6 +70,10 @@ def check_parent(first_name,second_name):
         return True 
     else: 
         return False 
+def check_sibling(first_name,second_name): 
+    if dict_data[first_name].parent.name==dict_data[second_name].parent.name: 
+        return True 
+    return False 
 dict_data = {} 
 Q = deque() 
 dads=set() 
