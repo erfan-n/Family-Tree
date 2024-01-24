@@ -74,6 +74,10 @@ def check_sibling(first_name,second_name):
     if dict_data[first_name].parent.name==dict_data[second_name].parent.name: 
         return True 
     return False 
+def not_close(first_name,second_name): 
+    if check_parent(first_name,second_name) or check_parent(second_name,first_name) or check_sibling(first_name,second_name): 
+        return False 
+    return True 
 dict_data = {} 
 Q = deque() 
 dads=set() 
