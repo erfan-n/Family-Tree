@@ -78,6 +78,10 @@ def not_close(first_name,second_name):
     if check_parent(first_name,second_name) or check_parent(second_name,first_name) or check_sibling(first_name,second_name): 
         return False 
     return True 
+def furthest_child(person): 
+    if person.children: 
+        return 1+max(list(map(furthest_child,person.children))) 
+    return 0 
 dict_data = {} 
 Q = deque() 
 dads=set() 
