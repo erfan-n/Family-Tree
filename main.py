@@ -82,6 +82,17 @@ def furthest_child(person):
     if person.children: 
         return 1+max(list(map(furthest_child,person.children))) 
     return 0 
+def lowest_common_ancestor(first_name,second_name):  
+    first_person=dict_data[first_name]  
+    second_person=dict_data[second_name]  
+    while(first_person.level<second_person.level):  
+        second_person=second_person.parent  
+    while(first_person.level>second_person.level):  
+        first_person=first_person.parent  
+    while(first_person.name != second_person.name):  
+        first_person=first_person.parent  
+        second_person=second_person.parent  
+    return first_person 
 dict_data = {} 
 Q = deque() 
 dads=set() 
