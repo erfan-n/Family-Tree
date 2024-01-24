@@ -93,6 +93,19 @@ def lowest_common_ancestor(first_name,second_name):
         first_person=first_person.parent  
         second_person=second_person.parent  
     return first_person 
+def furthest_relation():  
+    max=0  
+    first_person= None  
+    second_person= None 
+    no_childs.add(root) 
+    for a in no_childs:  
+        for b in no_childs:  
+            if a.level+b.level-2*lowest_common_ancestor(a.name,b.name).level>max:  
+                max=a.level+b.level-2*lowest_common_ancestor(a.name,b.name).level  
+                first_person=a.name  
+                second_person=b.name 
+    no_childs.remove(root) 
+    print(first_person,second_person)
 dict_data = {} 
 Q = deque() 
 dads=set() 
