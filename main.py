@@ -33,6 +33,34 @@ def CreateTree(root):
             dict_data[i.name] = i 
         Q.popleft() 
     return root
+def add_node(first_name,second_name):
+    first_person=node(first_name) 
+    second_person=dict_data[second_name]
+    if second_name in dads:
+        second_person.children.append(first_person)
+    elif second_name not in dads and second_person not in no_childs:
+        second_person.children.append(first_person)
+        no_childs.add(first_person)
+    elif second_person in no_childs:
+        if len(second_person.parent.children) > 1:
+            w = None
+            for i in second_person.parent.children:
+                if i.children==None and i.name != second_name:
+                    w = i
+                    break
+            if w:
+                no_childs.add(second_person.parent.children[second_person.parent.children.index(w)])
+            else:
+                dads.remove(second_person.parent.name)
+        else:
+            dads.remove(second_person.parent.name)
+        no_childs.remove(second_person)
+        no_childs.add(first_person)
+        second_person.children = [first_person]
+    first_person.parent = second_person
+    first_person.level = first_person.parent.level+1
+    dict_data[first_name] = first_person
+    dads.add(second_name)
 dict_data = {} 
 Q = deque() 
 dads=set() 
