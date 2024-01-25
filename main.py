@@ -1,4 +1,5 @@
 from collections import deque
+from os import system
 class node: 
     def __init__(self, name = None): 
         self.name = name 
@@ -257,3 +258,67 @@ dads=set()
 no_childs=set()
 root = None 
 root = CreateTree(root)
+while(True):
+    system("cls")
+    print("Menu:")
+    print("1-Create another Family Tree")
+    print("2-Add a family member")
+    print("3-Delete a family branch")
+    print("4-Size of a family branch")
+    print("5-Check parent")
+    print("6-Check sibling")
+    print("7-Check distant relative")
+    print("8-Common ancestor")
+    print("9-Furthest child")
+    print("10-Furthest relation")
+    choice = int(input("Enter your choice : "))
+    if choice == 1:
+        dict_data = {} 
+        Q = deque() 
+        dads=set() 
+        no_childs=set()
+        root = None
+        root = CreateTree(root)
+    elif choice == 2:
+        a = input("Enter the child and the parent name : ").split()
+        b = hash(a[1])
+        a = hash(a[0])
+        add_node(a,b)
+    elif choice == 3:
+        a = hash(input("Enter the name : "))
+        delete_node(dict_data[a])
+    elif choice == 4:
+        a = hash(input("Enter the name : "))
+        print(size_node(dict_data[a]))
+        input()
+    elif choice == 5:
+        a = input("Enter the first and the second name : ").split()
+        b = hash(a[1])
+        a = hash(a[0])
+        print(check_parent(a,b))
+        input()
+    elif choice == 6:
+        a = input("Enter the first and the second name : ").split()
+        b = hash(a[1])
+        a = hash(a[0])
+        print(check_sibling(a,b))
+        input()
+    elif choice == 7:
+        a = input("Enter the first and the second name : ").split()
+        b = hash(a[1])
+        a = hash(a[0])
+        print(not_close(a,b))
+        input()
+    elif choice == 8:
+        a = input("Enter the first and the second name : ").split()
+        b = hash(a[1])
+        a = hash(a[0])
+        print(lowest_common_ancestor(a,b).name)
+        input()
+    elif choice == 9:
+        a = hash(input("Enter first name : "))
+        print(furthest_child(dict_data[a]))
+        input()
+    elif choice == 10:
+        furthest_relation()
+        input()
