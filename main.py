@@ -106,6 +106,19 @@ def furthest_relation():
                 second_person=b.name 
     no_childs.remove(root) 
     print(first_person,second_person)
+def delete_node(person):
+    if person.children == None or person.children == []:
+        if person.name in dads:
+            dads.remove(person.name)
+        if person in no_childs:
+            no_childs.remove(person)
+        dict_data.pop(person.name)
+        person.parent.children.remove(person)
+        del person
+        return
+    temp = person.children.copy()
+    temp.append(person)
+    list(map(delete_node,temp))
 dict_data = {} 
 Q = deque() 
 dads=set() 
