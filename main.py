@@ -138,8 +138,8 @@ def fix_nochild(person,child):
                 no_childs.add(person.children[person.children.index(w)])
             else:
                 dads.remove(person.name)
-    elif len(person.children) == 1:
-        dads.add(person.name)
+    elif len(person.children) == 1 and person.parent.name not in dads:
+        dads.add(person.parent.name)
         no_childs.add(person)
 
 def hash(message):
