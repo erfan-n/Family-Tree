@@ -10,25 +10,27 @@ def CreateTree(root):
         root = node(input('Enter the name of the head of the family : ')) 
         root.level = 1 
         root.parent = node(None) 
-        root.parent.name='' 
-        dict_data[root.name] = root 
-        Q.append(root) 
+        root.parent.name=''
+        Q.append(root.name) 
+        root.name = hash(root.name)
+        dict_data[root.name] = root
     while(True): 
-        children = input(f"Enter the names of {Q[0].name}'s children : ").split(' ') 
+        j = dict_data[hash(Q[0])]
+        children = input(f"Enter the names of {Q[0]}'s children : ").split(' ')
         if children[0] == '': 
-            if Q[0].parent.name not in dads: 
-                no_childs.append(Q[0]) 
-                dads.add(Q[0].parent.name) 
+            if j.parent.name not in dads: 
+                no_childs.add(j)
+                dads.add(j.parent.name) 
             Q.popleft() 
             if len(Q) == 0: 
                 break 
-            continue 
-        children = list(map(node,children)) 
+            continue
         for i in children: 
-             Q.append(i) 
-        Q[0].children = children 
+            Q.append(i) 
+        children = list(map(node,list(map(hash,children)))) 
+        j.children = children 
         for i in children: 
-            i.parent = Q[0] 
+            i.parent = j 
             i.level = i.parent.level + 1 
             dict_data[i.name] = i 
         Q.popleft() 
