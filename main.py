@@ -8,7 +8,7 @@ class node:
         self.level = None
 def CreateTree(root): 
     if root == None: 
-        root = node(input('Enter the name of the head of the family : ')) 
+        root = node(input('Enter the name of the head of the family with ID (without space between name and ID) : ')) 
         root.level = 1 
         root.parent = node(None) 
         root.parent.name=''
@@ -17,7 +17,7 @@ def CreateTree(root):
         dict_data[root.name] = root
     while(True): 
         j = dict_data[hash(Q[0])]
-        children = input(f"Enter the names of {Q[0]}'s children : ").split(' ')
+        children = input(f"Enter the names of {Q[0]}'s children with IDs : ").split(' ')
         if children[0] == '': 
             if j.parent.name not in dads: 
                 no_childs.add(j)
@@ -295,44 +295,44 @@ while(True):
         root = None
         root = CreateTree(root)
     elif choice == 2:
-        a = input("Enter the child and the parent name : ").split()
+        a = input("Enter the child and the parent name with IDs : ").split()
         b = hash(a[1])
         a = hash(a[0])
         add_node(a,b)
     elif choice == 3:
-        a = hash(input("Enter the name : "))
+        a = hash(input("Enter the name with ID : "))
         fix_nochild(dict_data[a].parent,dict_data[a])
         delete_node(dict_data[a])
     elif choice == 4:
-        a = hash(input("Enter the name : "))
+        a = hash(input("Enter the name with ID : "))
         print(size_node(dict_data[a]))
         input()
     elif choice == 5:
-        a = input("Enter the first and the second name : ").split()
+        a = input("Enter the first and the second name with IDs : ").split()
         b = hash(a[1])
         a = hash(a[0])
         print(check_parent(a,b))
         input()
     elif choice == 6:
-        a = input("Enter the first and the second name : ").split()
+        a = input("Enter the first and the second name with IDs : ").split()
         b = hash(a[1])
         a = hash(a[0])
         print(check_sibling(a,b))
         input()
     elif choice == 7:
-        a = input("Enter the first and the second name : ").split()
+        a = input("Enter the first and the second name with IDs : ").split()
         b = hash(a[1])
         a = hash(a[0])
         print(not_close(a,b))
         input()
     elif choice == 8:
-        a = input("Enter the first and the second name : ").split()
+        a = input("Enter the first and the second name with IDs : ").split()
         b = hash(a[1])
         a = hash(a[0])
         print(lowest_common_ancestor(a,b).name)
         input()
     elif choice == 9:
-        a = hash(input("Enter first name : "))
+        a = hash(input("Enter first name with ID : "))
         print(furthest_child(dict_data[a]))
         input()
     elif choice == 10:
