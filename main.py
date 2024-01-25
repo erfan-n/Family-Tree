@@ -119,6 +119,10 @@ def delete_node(person):
     temp = person.children.copy()
     temp.append(person)
     list(map(delete_node,temp))
+def size_node(person):
+    if person.children: 
+        return 1+sum(list(map(size_node,person.children))) 
+    return 1
 dict_data = {} 
 Q = deque() 
 dads=set() 
