@@ -126,6 +126,21 @@ def size_node(person):
     if person.children: 
         return 1+sum(list(map(size_node,person.children))) 
     return 1
+def fix_nochild(person,child):
+    if len(person.children) > 1:
+        if person.name in dads and child in no_childs:
+            w = None
+            for i in person.children:
+                if i.children==None and i.name != child.name:
+                    w = i
+                    break
+            if w:
+                no_childs.add(person.children[person.children.index(w)])
+            else:
+                dads.remove(person.name)
+    elif len(person.children) == 1:
+        dads.add(person.name)
+        no_childs.add(person)
 
 def hash(message):
 
@@ -286,6 +301,7 @@ while(True):
         add_node(a,b)
     elif choice == 3:
         a = hash(input("Enter the name : "))
+        fix_nochild(dict_data[a].parent,dict_data[a])
         delete_node(dict_data[a])
     elif choice == 4:
         a = hash(input("Enter the name : "))
